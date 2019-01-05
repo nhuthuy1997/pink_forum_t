@@ -1,0 +1,68 @@
+.required::after {
+  content: " *";
+  color: red;
+}
+
+.fa-check, .fa-plus {
+  color: green;
+}
+
+.fa-times-circle, .fa-times, .fa-minus {
+  color: red;
+}
+
+.fa-ban {
+  color: orangered;
+}
+
+.fa-female, .fa-eye {
+  color: purple;
+}
+
+.fa-male, .fa-user-color, fa-draft {
+  color: blue;
+}
+
+.fa-eye-splash {
+  color: gray;
+}
+
+.margin-bottom-20 {
+  margin: 0 0 20px 0;
+}
+
+.footer {
+  position: relative !important;
+}
+
+.notice_response {
+  display: none;
+}
+
+.resize-vertical {
+  resize: vertical;
+}
+
+.border-solid {
+  border: 1px solid grey;
+  line-height: 20px;
+  height: 30px;
+  border-radius: 5px;
+  padding: 0 5px;
+}
+
+.no-margin-top {
+  margin: 0 0 !important;
+}
+
+.fullscreen, .CodeMirror-fullscreen {
+  z-index: 2000;
+}
+
+.hidden {
+  display: none;
+}
+
+.editor-toolbar, .CodeMirror-fullscreen {
+  z-index: 2000 !important;
+}

@@ -1,0 +1,13 @@
+<div class="white-box">
+  <% if topics.present? %>
+    <% topics.each do |topic| %>
+      <li>
+        <%= link_to "#", class: "waves-effect" do %>
+          <%= topic.title %>  <i class="fa <%= Settings.topic.status[topic.status] %> fa-fw" aria-hidden="true"></i>
+        <% end %>
+      </li>
+    <% end %>
+  <% else %>
+    <p>Không có chủ đề nào</p>
+  <% end %>
+</div>

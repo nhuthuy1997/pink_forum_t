@@ -1,0 +1,68 @@
+<% provide :title, @category.title %>
+<% topics = @category.topics %>
+<%= link_to "Cập nhật chuyên mục", edit_admins_category_path(@category),
+  class: "btn btn-danger pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light" %>
+<div class="clearfix margin-bottom-20"></div>
+<%= render "admins/categories/category_form", category: @category, disable: true %>
+
+<div class="whitebox">
+  <div class="col-lg-4 col-sm-6 col-xs-12">
+    <div class="white-box analytics-info">
+      <ul class="list-inline two-part">
+        <li>
+          <h3 class="box-title">Chủ đề </h3>
+        </li>
+        <li class="text-right"><span class="counter text-success"><%= topics.size %></span></li>
+      </ul>
+
+      <%= render "admins/topics/topics_list", topics: topics %>
+      <%= link_to "Quản lý chủ đề", admins_topics_path %>
+    </div>
+  </div>
+
+  <div class="col-lg-4 col-sm-6 col-xs-12">
+    <div class="white-box analytics-info">
+      <ul class="list-inline two-part">
+        <li>
+          <h3 class="box-title">Morderators</h3>
+        </li>
+        <li class="text-right"><span class="counter text-success"><%= @morderators.size %></span></li>
+      </ul>
+
+      <%= render "admins/users/users_list", users: @morderators, add_morderator: false, source: @category, action: :add %>
+
+      <%= link_to "Thêm morderators", edit_admins_category_path(@category) %>
+    </div>
+  </div>
+
+  <div class="col-lg-4 col-sm-6 col-xs-12">
+    <div class="white-box analytics-info">
+      <ul class="list-inline two-part">
+        <li>
+          <h3 class="box-title">Bài viết</h3>
+        </li>
+        <li class="text-right"><span class="counter text-success"><%= @category.posts.size %></span></li>
+
+        <li>
+          <h3 class="box-title">Lượt xem</h3>
+        </li>
+        <li class="text-right"><span class="counter text-success"><%= @category.total_views %></span></li>
+      </ul>
+
+      <%= link_to "Quản lý bài viết", admins_topics_path %>
+    </div>
+  </div>
+
+  <div class="col-lg-4 col-sm-6 col-xs-12">
+    <div class="white-box analytics-info">
+      <ul class="list-inline two-part">
+        <li>
+          <h3 class="box-title">Banning users</h3>
+        </li>
+        <li class="text-right"><span class="counter text-success"><%= @category.users.size %></span></li>
+      </ul>
+
+      <%= link_to "Quản lý banning users", edit_admins_category_path(@category) %>
+    </div>
+  </div>
+</div>

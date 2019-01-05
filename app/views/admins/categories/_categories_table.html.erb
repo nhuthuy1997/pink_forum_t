@@ -1,0 +1,20 @@
+<div>
+  <%= content_tag :table, role: :datatable, class: "categories",data: { url: admins_categories_path(format: :json) } do %>
+    <thead>
+      <tr>
+        <th>Tiêu đề</th>
+        <th>Trạng thái</th>
+        <th>Chủ đề</th>
+        <th>Bài viết</th>
+        <th>Lượt xem</th>
+        <th>Moderators</th>
+        <th>Uncheck</th>
+        <th>Banning users</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+    </tbody>
+  <% end %>
+</div>

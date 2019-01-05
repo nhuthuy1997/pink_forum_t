@@ -1,0 +1,10 @@
+<% provide :title, "Danh sách bài viết" %>
+
+<%= link_to "Tạo bài viết", new_admins_post_path,
+  class: "btn btn-danger pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light" %>
+<div class="clearfix margin-bottom-20"></div>
+<% if @posts.present? %>
+  <%= render "admins/posts/posts_table", posts: @posts %>
+<% else %>
+  <p>Không có chuyên mục nào</p>
+<% end %>

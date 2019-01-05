@@ -1,0 +1,44 @@
+<% provide :title, "Đăng nhập" %>
+<div class="limiter">
+  <div class="container-login100">
+    <div class="wrap-login100">
+      <div class="login100-form-title" style="background-image: url(/assets/bg-01.jpg);">
+        <span class="login100-form-title-1">
+          Đăng nhập
+        </span>
+      </div>
+
+      <%= form_for resource, as: resource_name, url: session_path(resource_name), html: {class: "login100-form validate-form"} do |f| %>
+        <%= devise_error_messages! %>
+        <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
+          <span class="label-input100">Email</span>
+          <%= f.email_field :email, autocomplete: "new-password", class: "input100", placeholder: "Nhập email" %>
+          <span class="focus-input100"></span>
+        </div>
+
+        <div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
+          <span class="label-input100">Mật khẩu</span>
+          <%= f.password_field :password, autocomplete: "new-password", class: "input100", placeholder: "Nhập mật khẩu" %>
+          <span class="focus-input100"></span>
+        </div>
+
+        <div class="flex-sb-m w-full p-b-30">
+          <div class="contact100-form-checkbox">
+            <input class="input-checkbox100" id="ckb1" type="checkbox" name="user[remember_me]">
+            <label class="label-checkbox100" for="ckb1">
+              Ghi nhớ đăng nhập
+            </label>
+          </div>
+          <div>
+            <%= link_to "Quên mật khẩu?", new_password_path(resource_name), class: "txt1" %>
+            <%= link_to "Đăng ký?", new_registration_path(resource_name), class: "txt1" %>
+          </div>
+        </div>
+
+        <div class="container-login100-form-btn">
+          <%= f.submit "Đăng nhập", class: "login100-form-btn" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

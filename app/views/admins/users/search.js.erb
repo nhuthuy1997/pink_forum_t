@@ -1,0 +1,8 @@
+$('.users-list').replaceWith(
+  "<%= j render partial: 'admins/users/users_list', locals: { users: @users, add_morderator: true, source: @category, action: :add } %>"
+);
+
+minus_morderators();
+add_morderators();
+ban_users();
+unban_users();

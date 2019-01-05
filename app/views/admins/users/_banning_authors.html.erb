@@ -1,0 +1,11 @@
+<li>
+  <div class="call-chat">
+    <button class="btn btn-rounded btn-default btn-outline m-r-5 btn-lg"><i class="fa fa-user fa-user-color"></i></button>
+    <button class="btn btn-rounded btn-default btn-outline m-r-5 btn-lg unload-<%= action %>-<%= Settings.target.action[action] %>" 
+      data-source="<%= eval(Settings.target.link[action]) %>">
+      <i class="fa fa-check"></i>
+    </button>
+  </div>
+  <%= render "shared/avatar", user: user %> <span><%= user.name %>
+  <br><small class="text-danger"><%= user.email %></small></span>
+</li>

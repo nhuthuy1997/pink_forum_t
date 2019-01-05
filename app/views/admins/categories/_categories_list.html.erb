@@ -1,0 +1,13 @@
+<div class="white-box">
+  <% if categories.present? %>
+    <% categories.each do |category| %>
+      <li>
+        <%= link_to edit_admins_category_path(category), class: "waves-effect" do %>
+          <%= category.title %>  <i class="fa <%= Settings.category.status[category.status] %> fa-fw" aria-hidden="true"></i>
+        <% end %>
+      </li>
+    <% end %>
+  <% else %>
+    <p>Không có chuyên mục nào</p>
+  <% end %>
+</div>

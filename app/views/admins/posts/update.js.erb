@@ -1,0 +1,17 @@
+async function notification(){
+  await $.toast({
+    text: '<%= @notification[:message]%>',
+    position: 'top-right',
+    loaderBg: '#fff',
+    icon: '<%= @notification[:icon] %>',
+    hideAfter: 3500,
+    stack: 6
+  });
+};
+
+$('.update-<%= @post.id %>').empty();
+$('.update-<%= @post.id %>').html(
+  "<%= j render partial: "admins/posts/post_row", locals: {record: @post} %>"
+);
+
+notification();

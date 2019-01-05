@@ -1,0 +1,9 @@
+<%= form_tag link_path, method: :get, class: "app-search hidden-sm hidden-xs m-r-10", role: "search", remote: true do %>
+  <div class="col-md-8">
+    <%= text_field_tag :search, "", class: "form-control no-margin-top", placeholder: "Search" %>
+  </div>
+  <div class="col-md-4">
+    <%= submit_tag "Tìm", class: "btn btn-warning search-submit", data: { disable_with: "Đang tìm.." } %>
+  </div>
+  <%= hidden_field_tag :target , action %>
+<% end %>

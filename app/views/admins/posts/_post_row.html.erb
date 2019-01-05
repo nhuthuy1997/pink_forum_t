@@ -1,0 +1,19 @@
+<td class="sorting_1"><%= record.title %></td>
+<td><%= record.status %> <i class="fa <%= Settings.post.status[record.status] %> status"></i></td>
+<td><%= record.author.name %></td>
+<td><%= record.views %></td>
+<td><%= record.topic.title %></td>
+<td><%= record.category.title %></td>
+<td><%= record.total_votes %></td>
+<td><%= record.comments.size %></td>
+<td><%= record.created_at.strftime(Settings.post.time_format) %></td>
+<td>
+  <%= link_to("Xem", [:admins, record]) %> | 
+  <% if record.uncheck? %>
+    <%= link_to("Duyệt", admins_post_path(record, accept: 1), method: :patch, remote: true) %>
+    <%= link_to("Không duyệt", admins_post_path(record, accept: 0), method: :patch, remote: true) %>
+  <% else %>
+    <%= link_to((record.publish? ? "Không duyệt" : "Duyệt"), admins_post_path(record, accept: record.publish? ? 0 : 1), method: :patch, remote: true) %>
+  <% end %> | 
+  <%= link_to("Xóa", [:admins, record], method: :delete, data: { confirm: "Bạn chắc chứ?" }, class: "link-remote", id: "delete-#{record.id}", remote: true) %>
+</td>

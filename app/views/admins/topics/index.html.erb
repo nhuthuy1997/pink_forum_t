@@ -1,0 +1,10 @@
+<% provide :title, "Danh sách chủ đề"%>
+
+<%= link_to "Tạo chủ đề", new_admins_topic_path,
+  class: "btn btn-danger pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light" %>
+<div class="clearfix margin-bottom-20"></div>
+<% if @topics.present? %>
+  <%= render "admins/topics/topics_table", topics: @topics %>
+<% else %>
+  <p>Không có chuyên mục nào</p>
+<% end %>

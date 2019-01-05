@@ -1,0 +1,61 @@
+<% provide :title, "Dashboard" %>
+
+<div class="row">
+  <div class="col-lg-4 col-sm-6 col-xs-12">
+    <div class="white-box analytics-info">
+      <h3 class="box-title">Chuyên mục</h3>
+      <ul class="list-inline two-part">
+        <li>
+          <div id="category-pie"><canvas width="67" height="30" style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas></div>
+        </li>
+        <li class="text-right"><i class="ti-arrow-up text-success"></i> <span class="counter text-success"><%= @categories.size %></span></li>
+        <input type="hidden"  class="cates-array" value="<%= @categories.values.join(" ") %>">
+      </ul>
+    </div>
+  </div>
+  <div class="col-lg-4 col-sm-6 col-xs-12">
+    <div class="white-box analytics-info">
+        <h3 class="box-title">Lượt xem</h3>
+        <ul class="list-inline two-part">
+            <li>
+              <div id="view-bar"><canvas width="67" height="30" style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas></div>
+            </li>
+            <li class="text-right"><i class="ti-arrow-up text-purple"></i> <span class="counter text-purple"><%= @total_views %></span></li>
+            <input type="hidden"  class="view-total" value="<%= @total_views %>">
+        </ul>
+    </div>
+  </div>
+  <div class="col-lg-4 col-sm-6 col-xs-12">
+    <div class="white-box analytics-info">
+        <h3 class="box-title">Bài viết</h3>
+        <ul class="list-inline two-part">
+            <li>
+                <div id="post-bar"><canvas width="67" height="30" style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas></div>
+            </li>
+            <li class="text-right"><i class="ti-arrow-up text-info"></i> <span class="counter text-info"><%= @posts.values.sum %></span></li>
+        </ul>
+        <input type="hidden" class="post-bar" value="<%= @posts.values.join(" ") %>">
+    </div>
+  </div>
+</div>
+
+<div class="col-md-6 col-lg-6 col-sm-6 col-xs-6">
+  <div class="white-box">
+    <h3 class="box-title">Chuyên mục</h3>
+    <%= pie_chart @categories %>
+  </div>
+</div>
+
+<div class="col-md-6 col-lg-6 col-sm-6 col-xs-6">
+  <div class="white-box">
+    <h3 class="box-title">Người dùng</h3>
+    <%= area_chart @users %>
+  </div>
+</div>
+
+<div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+  <div class="white-box">
+    <h3 class="box-title">Bài viết</h3>
+    <%= area_chart @posts %>
+  </div>
+</div>

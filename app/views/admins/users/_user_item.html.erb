@@ -1,0 +1,18 @@
+<div class="comment-body">
+  <div class="user-img">
+    <%= render "shared/avatar", user: user %>
+  </div>
+  <div class="mail-contnet">
+    <h5>
+      <%= user.name %>
+      <i class="fa <%= Settings.morderators.sex[user.sex] %> fa-fw" aria-hidden="true"></i>
+    </h5>
+    <span class="time"><%= user.email %></span>
+  </div>
+  <% if add_morderator %>
+    <button class="btn btn-rounded btn-default btn-outline m-r-5 btn-lg unload-<%= action %>-<%= Settings.target.action[action] %>" 
+      data-source="<%= eval(Settings.target.link[action]) %>">
+      <i class="fa <%= Settings.morderators.action[action] %>"></i>
+    </button>
+  <% end %>
+</div>

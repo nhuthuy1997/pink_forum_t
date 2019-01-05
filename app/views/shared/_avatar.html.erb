@@ -1,0 +1,5 @@
+<% if user.avatar.present? %>
+  <%= image_tag current_user.avatar, alt: "user-img", width:"36", class: "img-circle" %>
+<% else %>
+  <%= image_tag Settings.user.default_avatar, alt: "user-img", width:"36", class: "img-circle" %>
+<% end %>

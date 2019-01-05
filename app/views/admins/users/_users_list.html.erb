@@ -1,0 +1,12 @@
+<div class="<%= Settings.target.classname[action] %>-list">
+  <div class="<%= Settings.target.classstyle[action] %> <%= Settings.target.classname[action] %>-list-second">
+    <% if users.present? %>
+      <% users.each do |user| %>
+        <%= render Settings.target.partial[action], user: user, add_morderator: add_morderator,
+          source: source, action: action %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <%= paginate users, params: {search_user: @search, target: action}, remote: true %>
+</div>

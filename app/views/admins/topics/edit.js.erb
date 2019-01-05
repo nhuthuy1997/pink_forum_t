@@ -1,0 +1,6 @@
+$('.<%= Settings.target.classname[@action] %>-list').replaceWith(
+  "<%= j render partial: 'admins/users/users_list', locals: { users: eval(Settings.target.variable[@action]), add_morderator: true, source: @topic, action: @action } %>"
+);
+
+ban_users_topic();
+unban_users_topic();

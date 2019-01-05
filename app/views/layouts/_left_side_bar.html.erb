@@ -1,0 +1,27 @@
+<div class="navbar-default sidebar" role="navigation">
+  <div class="sidebar-nav slimscrollsidebar">
+    <div class="sidebar-head">
+      <h3><span class="fa-fw open-close"><i class="ti-close ti-menu"></i></span> <span class="hide-menu">Pink 4rum</span></h3>
+    </div>
+    <ul class="nav" id="side-menu">
+      <div style="padding: 70px 0 0;"></div>
+      <% Settings.role[current_user.type.underscore].each do |item| %>
+        <li>
+          <%= link_to eval(item.link), class: "waves-effect #{ item.root_path ? "menu-dashboard" : "menu-item" }" do %>
+            <i class="fa <%= Settings.html.menu[item.name].icon_class %> fa-fw" aria-hidden="true"></i><%= Settings.html.menu[item.name].meaning %>
+          <% end %>
+        </li>
+      <% end %>
+      <li>
+        <%= link_to "#", class: "waves-effect menu-item" do %>
+          <i class="fa fa-user fa-fw" aria-hidden="true"></i>Tài khoản
+        <% end %>
+      </li>
+      <li>
+        <%= link_to destroy_user_session_path, method: :delete, class: "waves-effect menu-item" do %>
+          <i class="fa fa-sign-out fa-fw" aria-hidden="true"></i>Đăng xuất
+        <% end %>
+      </li>
+    </ul>
+  </div>
+</div>

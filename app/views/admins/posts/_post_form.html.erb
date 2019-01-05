@@ -1,0 +1,48 @@
+<div class="col-md-8 col-xs-12">
+  <div class="white-box">
+    <% if disable %>
+      <fieldset disabled>
+    <% end %>
+    <%= form_for [:admins, post], html: {multipart: true, class: "form-horizontal form-material"}, remote: true do |f|%>
+      <div class="form-group">
+        <%= f.label "Tiêu đề", class: "col-md-12 required" %>
+        <div class="col-md-12">
+          <%= f.text_field :title, class: "form-control form-control-line", placeholder: "Nhập tiêu đề", required: true %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label "Chuyên mục", class: "col-sm-12 required" %>
+        <div class="col-sm-12">
+          <%= f.select :topic_id, topics.collect{|topic| [topic.title, topic.id]}, {}, {class: "form-control form-control-line"} %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label "Trạng thái", class: "col-sm-12 required" %>
+        <div class="col-sm-12">
+          <%= f.select :status, Post.statuses, {}, {class: "form-control form-control-line"} %>
+        </div>
+      </div>
+
+      <% if !disable %>
+        <div class="form-group">
+          <div class="col-sm-12">
+            <%= f.submit yield(:title), class: "btn btn-success" %>
+          </div>
+        </div>
+      <% end %>
+    
+    <% if disable %>
+      </fieldset>
+    <% end %>
+  </div>
+</div>
+
+  <div class="form-group">
+    <%= f.label "Nội dung", class: "col-md-12 required" %>
+    <div class="col-md-12">
+      <%= f.text_area :description, class: "form-control form-control-line resize-vertical", placeholder: "Nhập mô tả", id: "markdown" %>
+    </div>
+  </div>
+<% end %>

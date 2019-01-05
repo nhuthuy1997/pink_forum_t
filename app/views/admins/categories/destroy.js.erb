@@ -1,0 +1,18 @@
+async function notification(){
+  await $.toast({
+    text: '<%= @notification[:message]%>',
+    position: 'top-right',
+    loaderBg: '#fff',
+    icon: '<%= @notification[:icon] %>',
+    hideAfter: 3500,
+    stack: 6
+  });
+
+  if('<%= @notification[:icon] %>' == 'success'){
+    $('.<%= @class %>').remove();
+  } else {
+    $('.<%= @class %>>.status').attr('class', 'fa fa-times-circle');
+  }
+};
+
+notification();

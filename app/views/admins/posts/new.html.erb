@@ -1,0 +1,8 @@
+<% provide :title, "Tạo bài viết mới" %>
+
+<div class="col-md-4 col-xs-12">
+  <%= render "admins/categories/categories_list", categories: @categories %>
+  <%= render "admins/topics/topics_list", topics: @topics %>
+</div>
+
+<%= render "admins/posts/post_form", post: Post.new, topics: @topics, disable: false %>

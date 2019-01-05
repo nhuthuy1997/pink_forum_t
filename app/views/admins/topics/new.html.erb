@@ -1,0 +1,8 @@
+<% provide :title, "Tạo chủ đề"%>
+<div class="col-md-4 col-xs-12">
+  <%= render "admins/categories/categories_list", categories: @categories %>
+</div>
+
+<div class="col-md-8 col-xs-12">
+  <%= render "admins/topics/topic_form", topic: Topic.new, categories: @categories, disable: false %>
+</div>

@@ -1,0 +1,36 @@
+<% provide :title, "Cập nhật chủ đề - #{@topic.title}" %>
+<div class="col-md-4 col-xs-12">
+  <%= render "admins/categories/categories_list", categories: @categories %>
+  <%= render "admins/topics/topics_list", topics: @topics %>
+</div>
+
+<div class="col-md-8 col-xs-12">
+  <%= render "admins/topics/topic_form", topic: @topic, categories: @categories, disable: false %>
+</div>
+
+<div class="row">
+  <div class="col-md-12 col-lg-8 col-sm-12">
+    <div class="white-box">
+      <h3 class="box-title">DANH SÁCH TÁC GIẢ</h3>
+      <%= render "admins/users/search", link_path: edit_admins_topic_path(@topic), action: :topic_ban %>
+      <div class="comment-center p-t-10">
+        <%= render "admins/users/users_list", users: @authors, add_morderator: true, source: @topic, action: :topic_ban %>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-6 col-sm-12">
+    <div class="panel">
+      <div class="sk-chat-widgets">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            DANH SÁCH BANNING USERS
+            <%= render "admins/users/search", link_path: edit_admins_topic_path(@topic), action: :topic_unban %>
+          </div>
+          <div class="panel-body">
+            <%= render "admins/users/users_list", users: @banning_authors, add_morderator: true, source: @topic, action: :topic_unban %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

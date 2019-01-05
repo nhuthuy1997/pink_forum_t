@@ -1,0 +1,103 @@
+user:
+  default_avatar: "default_avatar.png"
+category:
+  status:
+    unpublish: "fa-times-circle"
+    publish: "fa-check"
+topic:
+  status:
+    unpublish: "fa-times-circle"
+    publish: "fa-check"
+    close: "fa-ban"
+post:
+  time_format: "%d-%m-%Y"
+  status:
+    uncheck: "fa-eye-slash"
+    checked: "fa-eye"
+    draft: "fa-dropbox"
+    publish: "fa-check"
+morderators:
+  sex:
+    female: "fa-female"
+    male: "fa-male"
+  action:
+    add: "fa-plus"
+    ban: "fa-times"
+    topic_ban: "fa-times"
+target:
+  action:
+    add: "morderators"
+    ban: "users"
+    unban: "users"
+    topic_ban: "users"
+    topic_unban: "users"
+  link:
+    add: "admins_add_or_minus_morderator_path(user, source)"
+    ban: "admins_ban_or_unban_author_path(user, source)"
+    remove: "admins_add_or_minus_morderator_path(user, source)"
+    unban: "admins_ban_or_unban_author_path(user, source)"
+    topic_ban: "admins_ban_or_unban_author_topic_path(user, source)"
+    topic_unban: "admins_ban_or_unban_author_topic_path(user, source)"
+  classname:
+    add: "users"
+    remove: "morderators"
+    ban: "authors"
+    unban: "banning-authors"
+    topic_ban: "authors"
+    topic_unban: "banning-authors"
+  partial:
+    add: "admins/users/user_item"
+    remove: "admins/users/morderator_item"
+    ban: "admins/users/user_item"
+    unban: "admins/users/banning_authors"
+    topic_ban: "admins/users/user_item"
+    topic_unban: "admins/users/banning_authors"
+  variable:
+    add: "@users"
+    remove: "@morderators"
+    ban: "@authors"
+    unban: "@banning_authors"
+    topic_ban: "@authors"
+    topic_unban: "@banning_authors"
+  classstyle:
+    add: "white-box"
+    remove: "chatonline"
+    ban: "white-box"
+    unban: "chatonline"
+    topic_ban: "white-box"
+    topic_unban: "chatonline"
+devise:
+  users_path: "users"
+http_verbs:
+  get: "GET"
+html:
+  menu:
+    posts: {meaning: "Bài viết", icon_class: "fa-file-powerpoint-o"}
+    dashboard: {meaning: "Thống kê", icon_class: "fa-clock-o"}
+    categories: {meaning: "Chuyên mục", icon_class: "fa-cubes"}
+    topics: {meaning: "Chủ đề", icon_class: "fa-cube"}
+    users: {meaning: "Người dùng", icon_class: "fa-users"}
+role:
+  admin: [
+    {name: "dashboard", link: "admins_root_path", root_path: true},
+    {name: "users", link: "#", root_path: false},
+    {name: "categories", link: "admins_categories_path", root_path: false},
+    {name: "topics", link: "admins_topics_path", root_path: false},
+    {name: "posts", link: "admins_posts_path", root_path: false},
+  ]
+
+  morderator: [
+    {name: "dashboard", link: "#", root_path: false},
+    {name: "posts", link: "#", root_path: false},
+    {name: "categories", link: "#", root_path: false},
+    {name: "topics", link: "#", root_path: false},
+    {name: "users", link: "#", root_path: false},
+  ]
+
+  author: [
+    {name: "posts", link: "authors_root_path", root_path: false},
+    {name: "topics", link: "#", root_path: false},
+  ]
+
+page:
+  per_page: 10

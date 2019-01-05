@@ -1,0 +1,34 @@
+<% provide :title, "Đổi mật khẩu"%>
+<div class="limiter">
+  <div class="container-login100">
+    <div class="wrap-login100">
+      <div class="login100-form-title" style="background-image: url(/assets/bg-01.jpg);">
+        <span class="login100-form-title-1">
+          Lấy lại mật khẩu
+        </span>
+      </div>
+
+      <%= form_for resource, as: resource_name, url: password_path(resource_name), html: {class: "login100-form validate-form"} do |f| %>
+        <%= devise_error_messages! %>
+        <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
+          <span class="label-input100">Email</span>
+          <%= f.email_field :email, autocomplete: "new-password", class: "input100" %>
+          <span class="focus-input100"></span>
+        </div>
+
+        <div class="flex-sb-m w-full p-b-30">
+          <div>
+            <%= link_to "Đăng nhập?", session_path(resource_name), class: "txt1" %>
+          </div>
+          <div>
+            <%= link_to "Đăng kí?", new_registration_path(resource_name), class: "txt1" %>
+          </div>
+        </div>
+
+        <div class="container-login100-form-btn">
+          <%= f.submit "Xác nhận", class: "login100-form-btn" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
