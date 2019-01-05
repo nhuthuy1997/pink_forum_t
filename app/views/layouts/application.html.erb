@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Elearning - <%= yield :title%></title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div class="preloader">
+      <svg class="circular" viewBox="25 25 50 50">
+        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+      </svg>
+    </div>
+    <div id="wrapper">
+      <% if user_signed_in? %>
+        <%= render "layouts/top_navbar", user: current_user %>
+        <div class="clearfix"></div>
+        <%= render "layouts/left_side_bar" %>
+
+        <div id="page-wrapper">
+          <div class="container-fluid">
+          <div class="row bg-title">
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+              <h4 class="page-title"><%= yield :title%></h4> </div>
+          </div>
+      <% end %>
+        <%= yield %>
+      <% if user_signed_in? %>
+          </div>
+        </div>
+        <%= render "layouts/footer" %>
+      <% end %>
+    </div>
+  </body>
+</html>

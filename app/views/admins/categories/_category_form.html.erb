@@ -1,0 +1,30 @@
+<div class="white-box">
+  <%= form_for [:admins, category], html: {multipart: true, class: "form-horizontal form-material"} do |f|%>
+    <div class="form-group">
+      <%= f.label "Tiêu đề", class: "col-md-12 required" %>
+      <div class="col-md-12">
+        <%= f.text_field :title, class: "form-control form-control-line", placeholder: "Nhập tiêu đề", required: true %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label "Mô tả", class: "col-md-12" %>
+      <div class="col-md-12">
+        <%= f.text_field :description, class: "form-control form-control-line", placeholder: "Nhập mô tả" %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label "Trạng thái", class: "col-sm-12 required" %>
+      <div class="col-sm-12">
+        <%= f.select :status, Category.statuses, {}, {class: "form-control form-control-line"} %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-12">
+        <%= f.submit yield(:title), class: "btn btn-success" %>
+      </div>
+    </div>
+  <% end %>
+</div>

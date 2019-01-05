@@ -1,0 +1,10 @@
+<% provide :title, "Danh sách chuyên mục"%>
+
+<%= link_to "Tạo chuyên mục", new_admins_category_path,
+  class: "btn btn-danger pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light" %>
+
+<% if @categories.present? %>
+  
+<% else %>
+  <p>Không có chuyên mục nào</p>
+<% end %>

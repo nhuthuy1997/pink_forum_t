@@ -1,0 +1,37 @@
+user:
+  default_avatar: "default_avatar.png"
+  regex_email: /\A[\w+\d*[\.\_\-]?\d*]+{6,30}@[\w*\d*]{3,10}\.[\w{3,6}]\z/i
+  regex_phone: /\A[[\+\-]?\d+]{10,20}\z/i
+devise:
+  users_path: "users"
+http_verbs:
+  get: "GET"
+html:
+  menu:
+    posts: {meaning: "Bài viết", icon_class: "fa-file-powerpoint-o"}
+    dashboard: {meaning: "Thống kê", icon_class: "fa-clock-o"}
+    categories: {meaning: "Chuyên mục", icon_class: "fa-cubes"}
+    topics: {meaning: "Chủ đề", icon_class: "fa-cube"}
+    users: {meaning: "Người dùng", icon_class: "fa-users"}
+
+role:
+  admin: [
+    {name: "dashboard", link: "#"},
+    {name: "posts", link: "#"},
+    {name: "categories", link: "admins_categories_path"},
+    {name: "topics", link: "#"},
+    {name: "users", link: "#"},
+  ]
+
+  morderator: [
+    {name: "dashboard", link: "#"},
+    {name: "posts", link: "#"},
+    {name: "categories", link: "#"},
+    {name: "topics", link: "#"},
+    {name: "users", link: "#"},
+  ]
+
+  author: [
+    {name: "posts", link: "authors_root_path", },
+    {name: "topics", link: "#"},
+  ]
