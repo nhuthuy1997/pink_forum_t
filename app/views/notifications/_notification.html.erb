@@ -1,0 +1,10 @@
+<li>
+  <%= link_to [notification.user.type.underscore.pluralize, notification.post],
+    class: "noti #{ notification.unread? ? "unread" : "read" }", data: {submit: "submit-noti-#{notification.id}"} do  %>
+    <strong><%= notification.sender %></strong> <%= notification.content %> <strong><%= notification.target %></strong>
+  <% end %>
+
+  <%= form_for [:admins, notification], remote: true do |f| %>
+    <%= f.submit "", class: "submit-noti-#{notification.id} hidden" %>
+  <% end %>
+</li>

@@ -1,12 +1,12 @@
 $(document).on('turbolinks:load', function(){
-  admins_categories();
+  admins_tables();
   minus_morderators();
   add_morderators();
   ban_users();
   unban_users();
 });
 
-async function admins_categories(){
+async function admins_tables(){
   await $('table[role="datatable"].categories').each(function(){
     $(this).DataTable({
       processing: true,
@@ -16,11 +16,38 @@ async function admins_categories(){
         { 'bSearchable': false, 'aTargets': [ 2, 3, 4, 5, 6, 7, 8] }]
     });
   });
-  await sleep(500);
 
-  $('.link-remote').click(function(){
-    $(this).parents('tr').addClass($(this).attr('id'));
+  await $('table[role="datatable"].posts').each(function(){
+    $(this).DataTable({
+      processing: true,
+      serverSide: true,
+      ajax: $(this).data('url'),
+      'aoColumnDefs': [{ 'bSortable': false, 'aTargets': [ 5, 6, 7, 8, 9] }, 
+        { 'bSearchable': false, 'aTargets': [ 3, 4, 5, 6, 7, 8, 9] }]
+    });
   });
+
+  await $('table[role="datatable"].topics').each(function(){
+    $(this).DataTable({
+      processing: true,
+      serverSide: true,
+      ajax: $(this).data('url'),
+      'aoColumnDefs': [{ 'bSortable': false, 'aTargets': [ 3, 4, 5, 6] }, 
+        { 'bSearchable': false, 'aTargets': [ 3, 4, 5, 6] }]
+    });
+  });
+
+  if($('.dataTables_wrapper').length){
+    var check_link_remote = setInterval(link_remote, 1000);
+    function link_remote(){
+      if($('.link-remote').length) {
+        clearInterval(check_link_remote);
+        $('.link-remote').click(function(){
+          $(this).parents('tr').addClass($(this).attr('id'));
+        });
+      }
+    }
+  }
 }
 
 async function minus_morderators(){

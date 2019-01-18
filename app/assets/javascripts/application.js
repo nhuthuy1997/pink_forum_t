@@ -32,3 +32,8 @@
 //= require chartkick
 
 //= require simplemde.min
+//= require dropzone
+
+//= require cable
+
+

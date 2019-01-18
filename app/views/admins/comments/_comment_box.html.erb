@@ -1,0 +1,20 @@
+<div class="post-comments">
+  <div class="comments-nav">
+    <ul class="nav nav-pills">
+      <li role="presentation" class="dropdown">
+        <p>Có tất cả <%= comments.size %> comments</p>
+      </li>
+    </ul>
+  </div>
+  <div class="row comment-box">
+    <%= render "admins/comments/comments", comments: comments.select{ |comment| comment.parent_id.nil? }, all_comment: comments, post: post %>
+  </div>
+
+  <%= form_for [:admins, post, Comment.new], html: { class: "form-material unload-comment", multipart: true  }, remote: true do |f| %>
+    <div class="form-group">
+      <%= f.text_area :content, class: "form-control resize-vertical", rows: 5, placeholder: "Comment here" %>
+      <%= f.hidden_field :post_id, value: post.id %>
+    </div>
+    <%= f.submit "Gửi", class: "btn btn-primary" %>
+  <% end %>
+</div>

@@ -1,21 +1,7 @@
 $(document).on('turbolinks:load', function(){
-  admins_topics();
   ban_users_topic();
   unban_users_topic();
 });
-
-async function admins_topics(){
-  await $('table[role="datatable"].topics').each(function(){
-    $(this).DataTable({
-      processing: true,
-      serverSide: true,
-      ajax: $(this).data('url'),
-      'aoColumnDefs': [{ 'bSortable': false, 'aTargets': [ 3, 4, 5, 6] }, 
-        { 'bSearchable': false, 'aTargets': [ 3, 4, 5, 6] }]
-    });
-  });
-  await sleep(500);
-}
 
 async function ban_users_topic(){
   await $('.unload-topic_ban-users').click(function(){

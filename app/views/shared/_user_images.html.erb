@@ -1,0 +1,11 @@
+<div class="gallery" id="gallery">
+  <% user.images.each do |image| %>
+    <div class="mb-3 pics animation all 1">
+      <%= image_tag image.link.to_s, class: "img-fluid images-resize_to_fit unload" %>
+    </div>
+  <% end %>
+  <div class="mb-3 pics animation all 1 clone" style="display:none">
+    <%= image_tag "", class: "img-fluid images-resize_to_fit unload" %>
+  </div>
+</div>
+<div class="clearfix"></div>

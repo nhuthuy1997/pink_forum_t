@@ -1,0 +1,8 @@
+<% provide :title, "Cập nhật bài viết" %>
+
+<div class="col-md-4 col-xs-12">
+  <%= render "admins/categories/categories_list", categories: @categories %>
+  <%= render "admins/topics/topics_list", topics: @topics %>
+</div>
+
+<%= render "admins/posts/post_form", post: @post, topics: @topics, categories: @categories, disable: false, editable: true %>

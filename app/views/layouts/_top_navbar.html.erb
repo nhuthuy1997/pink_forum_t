@@ -1,11 +1,19 @@
 <nav class="navbar navbar-default navbar-static-top m-b-0">
 	<div class="navbar-header">
+		<div class="top-left-part">
+			<b>
+				<span class="dark-logo">Pink 4rum</span>
+			</b>
+		</div>
 		<ul class="nav navbar-top-links navbar-right pull-right">
 			<li>
-				<form role="search" class="app-search hidden-sm hidden-xs m-r-10">
-					<input type="text" placeholder="Search..." class="form-control"> <a href=""><i class="fa fa-search"></i></a>
-				</form>
+				<% if current_user.type == Author.name %>
+					<form role="search" class="app-search hidden-sm hidden-xs m-r-10">
+						<input type="text" placeholder="Search..." class="form-control"> <a href=""><i class="fa fa-search"></i></a>
+					</form>
+				<% end %>
 			</li>
+			<%= render "layouts/notification" %>
 			<li>
 				<a class="profile-pic">
 					<%= render "shared/avatar", user: user %>

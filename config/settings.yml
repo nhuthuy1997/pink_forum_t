@@ -95,8 +95,8 @@ role:
   ]
 
   author: [
-    {name: "posts", link: "authors_root_path", root_path: false},
-    {name: "topics", link: "#", root_path: false},
+    {name: "posts", link: "authors_root_path", root_path: true},
+    {name: "topics", link: "authors_topics_path", root_path: false},
   ]
 
 page:

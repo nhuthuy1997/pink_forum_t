@@ -1,0 +1,17 @@
+<div class="main">
+  <%= link_to admins_post_votes_path(post, status: 1), remote: true, multipart: true, method: :post do %>
+    <button id="upButton" type="button"
+      class="vote <%= "up-active" if post.votes.find_by(user: current_user, status: 1).present? %>">
+      <i class="fa fa-angle-up upArrow"></i>
+    </button>
+  <% end %>
+
+  <h3 id="scoreCounter"><%= post.total_votes %></h3>
+
+  <%= link_to admins_post_votes_path(post, status: -1), remote: true, multipart: true, method: :post do %>
+    <button id="downButton" type="button"
+      class="vote <%= "down-active" if post.votes.where(user: current_user, status: -1).present? %>">
+      <i class="fa fa-angle-down downArrow"></i>
+    </button>
+  <% end %>
+</div>

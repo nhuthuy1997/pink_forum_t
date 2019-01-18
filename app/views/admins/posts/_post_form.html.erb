@@ -1,9 +1,12 @@
-<div class="col-md-8 col-xs-12">
-  <div class="white-box">
-    <% if disable %>
-      <fieldset disabled>
-    <% end %>
-    <%= form_for [:admins, post], html: {multipart: true, class: "form-horizontal form-material"}, remote: true do |f|%>
+<% if disable %>
+  <fieldset disabled>
+<% end %>
+<%= form_for [:admins, post], html: {multipart: true, class: "form-horizontal form-material"}, remote: true do |f|%>
+  <div class="col-md-8 col-xs-12">
+    <div class="white-box">
+      <% if editable %>
+        <%= hidden_field_tag "editable", editable %>
+      <% end %>
       <div class="form-group">
         <%= f.label "Tiêu đề", class: "col-md-12 required" %>
         <div class="col-md-12">
@@ -12,9 +15,26 @@
       </div>
 
       <div class="form-group">
+        <%= label_tag "Chuyên mục", nil, class: "col-sm-12 required" %>
+        <div class="col-sm-12">
+          <%= select_tag :category_id, options_for_select(categories.collect{|category| [category.title, category.id]}), class: "form-control form-control-line" %>
+        </div>
+      </div>
+
+      <div class="form-group">
         <%= f.label "Chuyên mục", class: "col-sm-12 required" %>
         <div class="col-sm-12">
-          <%= f.select :topic_id, topics.collect{|topic| [topic.title, topic.id]}, {}, {class: "form-control form-control-line"} %>
+          <% categories.each do |category| %>
+            <%= f.select :topic_id, category.topics.collect{|topic| [topic.title, topic.id]}, {},
+              {class: "form-control form-control-line topic-#{category.id} topic-hide"} %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label "Mô tả", class: "col-md-12" %>
+        <div class="col-md-12">
+          <%= f.text_area :description, class: "form-control form-control-line resize-vertical", placeholder: "Nhập mô tả", rows: 5 %>
         </div>
       </div>
 
@@ -33,16 +53,17 @@
         </div>
       <% end %>
     
-    <% if disable %>
-      </fieldset>
-    <% end %>
+      <% if disable %>
+        </fieldset>
+      <% end %>
+    </div>
   </div>
-</div>
+  <div class="clearfix"></div>
 
   <div class="form-group">
     <%= f.label "Nội dung", class: "col-md-12 required" %>
     <div class="col-md-12">
-      <%= f.text_area :description, class: "form-control form-control-line resize-vertical", placeholder: "Nhập mô tả", id: "markdown" %>
+      <%= f.text_area :content, class: "form-control form-control-line resize-vertical", placeholder: "Nhập mô tả", id: "markdown" %>
     </div>
   </div>
 <% end %>

@@ -5,4 +5,4 @@
   <%= render "admins/topics/topics_list", topics: @topics %>
 </div>
 
-<%= render "admins/posts/post_form", post: Post.new, topics: @topics, disable: false %>
+<%= render "admins/posts/post_form", post: Post.new, topics: @topics, categories: @categories, disable: false, editable: false %>

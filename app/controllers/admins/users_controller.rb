@@ -2,6 +2,12 @@ module Admins
   class UsersController < BaseController
     before_action :find_category, :find_topic, only: %i(search)
 
+    def info
+      respond_to do |format|
+        format.json {render json: current_user: current_user}
+      end
+    end
+  
     def search
       @users = User.search params
 

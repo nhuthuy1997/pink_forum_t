@@ -1,0 +1,4 @@
+<% @posts.each do |post| %>
+  <%= render "authors/posts/post_box", post: post %>
+<% end %>
+<%= paginate @posts %>

@@ -37,14 +37,14 @@
       <% end %>
     </div>
 
-    <% if @markdown_editor %>
-      <%= render "shared/embed_modal" %>
+    <% if @uploader %>
+      <%= render "shared/upload_images_modal", user: current_user %>
     <% end %>
     <script>
       if ($(`a.menu-dashboard`).attr('href') == window.location.pathname) {
         $(`a.menu-dashboard`).addClass('active');
       } else {
-        $(`a.menu-item[href*="${window.location.pathname}"]`).addClass('active');
+        $(`a.menu-item`).filter(function(index, element){return window.location.href.includes(element)}).addClass('active');
       }
     </script>
   </body>

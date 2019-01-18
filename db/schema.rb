@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_11_061550) do
+ActiveRecord::Schema.define(version: 2019_01_17_091747) do
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
@@ -40,18 +40,6 @@ ActiveRecord::Schema.define(version: 2019_01_11_061550) do
     t.index ["user_id"], name: "index_category_managements_on_user_id"
   end
 
-  create_table "ckeditor_assets", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "data_file_name", null: false
-    t.string "data_content_type"
-    t.integer "data_file_size"
-    t.string "type", limit: 30
-    t.integer "width"
-    t.integer "height"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["type"], name: "index_ckeditor_assets_on_type"
-  end
-
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "content"
     t.bigint "user_id"
@@ -63,12 +51,32 @@ ActiveRecord::Schema.define(version: 2019_01_11_061550) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
+  create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "link"
+    t.boolean "current_avatar"
+    t.index ["user_id"], name: "index_images_on_user_id"
+  end
+
+  create_table "notifications", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "content"
+    t.integer "status"
+    t.integer "type_noti"
+    t.string "target"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "sender"
+    t.integer "target_id"
+    t.index ["user_id"], name: "index_notifications_on_user_id"
+  end
+
   create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
     t.text "content"
     t.string "description"
     t.integer "status"
-    t.integer "views"
+    t.integer "views", default: 0
     t.bigint "user_id"
     t.bigint "topic_id"
     t.datetime "created_at", null: false
@@ -114,7 +122,6 @@ ActiveRecord::Schema.define(version: 2019_01_11_061550) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.string "avatar"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -138,6 +145,8 @@ ActiveRecord::Schema.define(version: 2019_01_11_061550) do
   add_foreign_key "category_managements", "users"
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
+  add_foreign_key "images", "users"
+  add_foreign_key "notifications", "users"
   add_foreign_key "posts", "topics"
   add_foreign_key "posts", "users"
   add_foreign_key "topic_bannings", "topics"

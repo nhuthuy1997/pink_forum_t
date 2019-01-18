@@ -1,0 +1,59 @@
+<div class="media">
+  <div class="media-heading">
+    <button class="btn btn-default btn-xs" type="button" data-toggle="collapse" data-target="#comment-box-<%= comment.id %>" aria-expanded="false" 
+      aria-controls="collapseExample">
+      <span class="fa fa-minus" aria-hidden="true"></span>
+    </button>
+    <%= render "shared/avatar", user: comment.user %>
+    <span class="label label-info"><%= comment.user.name %></span> <%= comment.updated_at.strftime "%H:%m:%S %d-%m-%Y" %>
+  </div>
+  <div class="panel-collapse collapse in" id="comment-box-<%= comment.id %>">
+    <div class="media-left"></div>
+    <div class="media-body comment-<%= comment.id %>">
+      <p><%= comment.content.html_safe %></p>
+      <div class="comment-meta">
+        <span><a href="#">Report</a></span>
+        <% if comment.user == current_user %>
+          <span>
+            <a class="" role="button" data-toggle="collapse" href="#edit-comment-<%= comment.id %>" 
+              aria-expanded="false" aria-controls="collapseExample">Edit</a>
+          </span>
+          <span>
+            <%= link_to "Delete" ,[:admins, comment.post, comment], method: :delete, role: "button", remote: true %>
+          </span>
+          <div class="collapse" id="edit-comment-<%= comment.id %>">
+            <%= form_for [:admins, comment.post, comment], remote: true,
+              html: { class: "form-material unload-comment", multipart: true } do |f| %>
+              <div class="form-group">
+                <%= f.text_area :content, class: "form-control resize-vertical", rows: 4, placeholder: "Edit here" %>
+                <%= f.hidden_field :post_id %>
+                <%= f.hidden_field :parent_id %>
+              </div>
+              <%= f.submit "Cập nhật", class: "btn btn-primary" %>
+            <% end %>
+          </div>
+        <% else %>
+          <span>
+            <a class="" role="button" data-toggle="collapse" href="#reply-comment-<%= comment.id %>" 
+              aria-expanded="false" aria-controls="collapseExample">Reply</a>
+          </span>
+          <div class="collapse" id="reply-comment-<%= comment.id %>">
+            <%= form_for [:admins, post, Comment.new], html: { class: "form-material unload-comment", multipart: true }, remote: true do |f| %>
+              <div class="form-group">
+                <%= f.text_area :content, class: "form-control resize-vertical", rows: 4, placeholder: "Reply here" %>
+                <%= f.hidden_field :post_id, value: post.id %>
+                <%= f.hidden_field :parent_id, value: comment.id %>
+              </div>
+              <%= f.submit "Trả lời", class: "btn btn-primary" %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+      <!-- Children comment -->
+        <% unless (comments = all_comment.select{ |children_comment| children_comment.parent_id == comment.id }).blank? %>
+          <%= render "admins/comments/comments", comments: comments, all_comment: all_comment, post: post %>
+        <% end %>
+      <!-- Children comment -->
+    </div>
+  </div>
+</div>

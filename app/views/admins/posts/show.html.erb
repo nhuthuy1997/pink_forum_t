@@ -1,0 +1,28 @@
+<% provide :title, "#{@post.topic.category.title} - #{@post.topic.title}" %>
+
+<div class="post-info white-box" data-post-id="<%= @post.id %>" data-user-id="<%= current_user.id %>">
+  <div class="col-md-8 col-xs-8 col-sm-8">
+    <h2><%= @post.title %></h2>
+    <span class="post-time"><%= @post.author.name %></span>
+    <% if current_user == @post.author %>
+      <%= link_to edit_admins_post_path(@post) do %>
+        <span><li class="fa fa-edit"></li></span>
+      <% end %>
+    <% end %>
+    <span class="post-time">đã viết vào ngày <%= @post.created_at.strftime(Settings.post.time_format) %></span>
+    <br>
+    <i class="fa fa-eye post-time"></i><span><%= @post.views %></span>
+    <i class="fa  fa-comments-o post-time"></i><span><%= @post.comments.size %></span>
+  </div>
+  <div class="col-md-4 second col-xs-4 col-sm-4">
+    <%= render "admins/posts/vote", post: @post %>
+  </div>
+  <div class="clearfix"></div>
+</div>
+<div class="markdown">
+  <%= markdown @post.content %>
+</div>
+
+<div>
+  <%= render "admins/comments/comment_box", comments: @post.comments.includes(:user, user: :images), post: @post %>
+</div>

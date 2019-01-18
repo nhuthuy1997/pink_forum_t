@@ -1,0 +1,9 @@
+<% if @comment.parent_id.present? %>
+  <% classname = ".comment-#{@comment.parent_id}" %>
+<% else %>
+  <% classname = ".comment-box" %>
+<% end %>
+
+var div_tag;
+div_tag = $('<%= classname %>');
+div_tag.append(`<%= render "admins/comments/comment", comment: @comment, all_comment: [], post: @comment.post %>`);

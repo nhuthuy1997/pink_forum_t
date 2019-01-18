@@ -1,16 +1,29 @@
 $(document).on('turbolinks:load', function(){
-  admins_posts();
+  toggle_topics();
+  checkScore();
+
+  $('#category_id').click(function() {
+    toggle_topics();
+  });
 });
 
-async function admins_posts(){
-  await $('table[role="datatable"].posts').each(function(){
-    $(this).DataTable({
-      processing: true,
-      serverSide: true,
-      ajax: $(this).data('url'),
-      'aoColumnDefs': [{ 'bSortable': false, 'aTargets': [ 3, 4, 5, 6, 7, 8, 9] }, 
-        { 'bSearchable': false, 'aTargets': [ 3, 4, 5, 6, 7, 8, 9] }]
-    });
-  });
-  await sleep(500);
+function toggle_topics(){
+  $('.topic-hide').hide();
+  $('.topic-hide').prop('disabled', true);
+  let category_id = $('#category_id').val();
+  $(`.topic-${category_id}`).prop('disabled', false);
+  $(`.topic-${category_id}`).show();
+}
+
+function checkScore() {
+  let color = '';
+  let scoreVal = $('#scoreCounter').text();
+  if (scoreVal < 0) {
+    color = "#FF586C";
+  } else if (scoreVal > 0) {
+    color = "#6CC576";
+  } else {
+    color = "#666666";
+  }
+  $('#scoreCounter').css('color', color);
 }

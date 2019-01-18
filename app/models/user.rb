@@ -9,6 +9,8 @@ class User < ApplicationRecord
   has_many :topics, dependent: :destroy
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :images
+  has_many :notifications
 
   # validates :name, presence: true, length: {maximum: 50}
   validates :email, presence: true, uniqueness: true, format: {with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i}
@@ -20,6 +22,10 @@ class User < ApplicationRecord
   scope :search, (lambda do |search=""|
     where("name LIKE ? OR email LIKE ?", "%#{search}%", "%#{search}%")
   end)
+
+  def avatar
+    self.images.where(current_avatar: true).first
+  end
 
   private
 

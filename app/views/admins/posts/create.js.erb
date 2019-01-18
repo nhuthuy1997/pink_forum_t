@@ -1,0 +1,14 @@
+async function notification(){
+  $.toast({
+    text: '<%= @notification[:message]%>',
+    position: 'top-right',
+    loaderBg: '#fff',
+    icon: '<%= @notification[:icon] %>',
+    hideAfter: 3500,
+    stack: 6
+  });
+  await sleep(1000);
+  window.location.href = '<%= @notification[:path] %>';
+};
+
+notification();
